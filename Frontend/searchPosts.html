@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts</title>
+    <style>
+        .user-main {
+            width: 24%;
+            display: inline-block;
+            vertical-align: top;
+        }
+        
+        .user-main .user {
+            width: 80%;
+            margin: 0px auto;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .user-main .user .icon img {
+            width: 150px;
+            height: 150px;
+        }
+
+        .user-main .user .name {
+            font-weight: bold;
+            font-size: 20px;
+            margin-top: 8px;
+        } 
+
+        .posts {
+            width: 75%;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .post-main {
+            width: 75%;
+            margin: 0px auto;
+        }
+
+         .title h1 {
+            background-color: #dc2827;
+            text-align: center;
+            color: white;
+            padding: 10px;
+        }
+
+        .post-list {
+            margin-top: 20px;
+            border: 1px solid #dc2827;
+            padding: 10px;
+        }
+
+        .post-list .line-one img {
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .post-list .line-one .title {
+            display: inline-block;
+            /* vertical-align: middle; */
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        .post-list .line-two .desc {
+            margin-top: 10px;
+        }
+
+        .post-list .line-three button {
+            margin-top: 10px;
+            background-color: #dc2827;
+            box-shadow: none;
+            border: none;
+            color: white;
+            padding: 10px 12px;
+        }
+
+        .user-details {
+            margin-top: 5px;
+        }
+
+        .no-posts {
+            display: none;
+        }
+
+        .sign-out-button {
+            margin: 5px auto;
+            background-color: gray;
+            box-shadow: none;
+            border: none;
+            color: white;
+            padding: 10px 12px;
+            width: 30%;
+            cursor: pointer;
+        }
+
+        .sign-out-button.edit {
+            background-color: green;
+        }
+
+        .input-text {
+            margin: 0px auto;
+            margin-top: 10px;
+        }
+
+        .input-text.name-edit {
+            width: 40%;
+            display: inline-block;
+        }
+
+        .search {
+            width: 96%;
+            padding: 10px 15px;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .title h1 {
+            background-color: white;
+            text-align: center;
+            color: #dc2827;
+            padding: 10px;
+            border: 4px solid #dc2827;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="posts">
+            <div class="post-main">
+                <div class="title">
+                    <h1>CONTRACT SEARCH</h1>
+                </div>
+                <input type="text" class="search" placeholder="Search" id="search" onkeyup="search()">
+                <div class="no-posts">
+                    No Posts Available
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./searchPosts.js"></script>
+</body>
+</html>

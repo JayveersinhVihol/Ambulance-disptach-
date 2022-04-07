@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <style>
+        body {
+            margin: 8px;
+        }
+
+        h1 {
+            font-size: 2em;
+            line-height: auto;
+            margin-block-start: 0.67em;
+            margin-block-end: 0.67em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+        }
+
+        .user-main {
+            width: 24%;
+            display: inline-block;
+            vertical-align: top;
+        }
+        
+        .user-main .user {
+            width: 80%;
+            margin: 0px auto;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .user-main .user .icon img {
+            width: 150px;
+            height: 150px;
+        }
+
+        .user-main .user .name {
+            font-weight: bold;
+            font-size: 20px;
+            margin-top: 8px;
+        } 
+
+        .posts {
+            width: 75%;
+            display: inline-block;
+        }
+
+        .post-main {
+            width: 75%;
+            margin: 0px auto;
+        }
+
+         .title h1 {
+            background-color: #dc2827;
+            text-align: center;
+            color: white;
+            padding: 10px;
+        }
+
+        .post-list {
+            margin-top: 20px;
+            border: 1px solid #dc2827;
+            padding: 10px;
+        }
+
+        .post-list .line-one img {
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .post-list .line-one .title {
+            display: inline-block;
+            /* vertical-align: middle; */
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        .post-list .line-two .desc {
+            margin-top: 10px;
+        }
+
+        .post-list .line-three button {
+            margin-top: 10px;
+            background-color: #dc2827;
+            box-shadow: none;
+            border: none;
+            color: white;
+            padding: 10px 12px;
+        }
+
+        .user-details {
+            margin-top: 5px;
+        }
+
+        .no-posts {
+            display: none;
+        }
+
+        .sign-out-button {
+            margin: 5px auto;
+            background-color: gray;
+            box-shadow: none;
+            border: none;
+            color: white;
+            padding: 10px 12px;
+            width: 42%;
+            cursor: pointer;
+        }
+
+        .sign-out-button.edit {
+            background-color: green;
+        }
+
+        .input-text {
+            margin: 0px auto;
+            margin-top: 10px;
+        }
+
+        .input-text.name-edit {
+            width: 40%;
+            display: inline-block;
+        }
+
+        .search {
+            width: 96%;
+            padding: 10px 15px;
+        }
+
+        .inputfield {
+            margin: 10px 0px;
+        }
+
+        .inputfield label {
+            width: 28%;
+        }
+
+        .inputfield .input, .inputfield .custom_select {
+            width: 50%;
+            display: inline-block;
+        }
+
+        .title h1 {
+            background-color: white;
+            text-align: center;
+            color: #dc2827;
+            padding: 10px;
+            border: 4px solid #dc2827;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="user-main">
+            <div class="title"><h1>CONTRACTOR</h1></div>
+            <div class="user">
+                <div class="icon">
+                    <img src="./user.png">
+                </div>
+                <div class="name" id="name"></div>
+                <input type="text" placeholder="First Name" class="input-text name-edit" id="fNameEdit">
+                <input type="text" placeholder="Last Name" class="input-text name-edit" id="lNameEdit">
+                <div class="user-details" id="email"></div>
+                <input type="text" placeholder="Email" class="input-text" id="emailEdit">
+                <div class="user-details" id="mobile"></div>
+                <input type="text" placeholder="Mobile Number" class="input-text" id="mobileNumberEdit">
+                <div class="sign-out-button edit" id="edit" onclick="edit()">Edit</div>
+                <div class="sign-out-button edit" id="save" onclick="save()">Save</div>
+                <div class="sign-out-button" onclick="logOut()">Sign Out</div>
+            </div>
+        </div>
+        <div class="posts">
+            <div class="post-main">
+                <div class="title">
+                    <h1>CONTRACT POSTS</h1>
+                </div>
+                <input type="text" class="search" placeholder="Search" id="search" onkeyup="search()">
+                <div class="no-posts">
+                    No Posts Available
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Apply for <span id="job-title"></span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form">
+                        <h3> Basic Information </h3>
+            
+                        <div class="inputfield">
+                            <label>Email</label>
+                            <input type="text" class="input" id="userEmail">
+                        </div>
+                        <div class="inputfield">
+                            <label>First Name</label>
+                            <input type="text" class="input" id="Fname">
+                        </div> 
+                        <div class="inputfield">
+                            <label>Last Name</label>
+                            <input type="text" class="input" id="Lname">
+                        </div>
+                        <div class="inputfield">
+                            <label>Phone Number</label>
+                            <input type="text" class="input" id="phone">
+                        </div>
+                        <div class="inputfield">
+                            <label>Address</label>
+                            <input type="text" class="input" id="Add">
+                        </div>
+                        <div class="inputfield">
+                            <label>City</label>
+                            <input type="text" class="input" id="city">
+                        </div>
+                        <div class="inputfield">
+                            <label>Province</label>
+                            <div class="custom_select">
+                                <select id="province">
+                                    <option value="">Select</option>
+                                    <option value="Ontario">Ontario</option>
+                                    <option value="Quebec">Quebec</option>
+                                    <option value="Alberta">Alberta</option>
+                                    <option value="British Columbia">British Columbia</option>
+                                    <option value="Manitoba">Manitoba</option>
+                                    <option value="New Brunswick">New Brunswick</option>
+                                    <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+                                    <option value="Nova Scotia">Nova Scotia</option>
+                                    <option value="Prince Edward Island">Prince Edward Island</option>
+                                    <option value="Saskatchewan">Saskatchewan</option>
+                                </select>
+                            </div>
+                        </div> 
+                        <div class="inputfield">
+                            <label>Country</label>
+                            <input type="text" class="input" id="country">
+                        </div> 
+            
+                        <h3>Education</h3>
+            
+                        <div class="inputfield">
+                            <label>School</label>
+                            <input type="text" class="input" id="school">
+                        </div>
+                        <div class="inputfield">
+                            <label>Program</label>
+                            <input type="text" class="input" id="program">
+                        </div>
+                        <div class="inputfield">
+                            <label>Education Level</label>
+                            <div class="custom_select">
+                                <select id="edu_lvl">
+                                    <option value="">Select</option>
+                                    <option value="Graduated">Graduated</option>
+                                    <option value="Current Enrolled">Current Enrolled</option>
+                                    <option value="Did Not Graduate">Did Not Graduate</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="inputfield">
+                            <label>Graduation Date</label>
+                            <input type="date" class="input" id="gr_date">
+                        </div>
+            
+                        <h3>Work Experience</h3>
+            
+                        <div class="inputfield">
+                            <label>Employer</label>
+                            <input type="text" class="input" id="emp_name">
+                        </div>
+                        <div class="inputfield">
+                            <label>Job Title</label>
+                            <input type="text" class="input" id="job_t">
+                        </div>
+                        <div class="inputfield">
+                            <label>Job Duty</label>
+                            <textarea class="textarea" id="job_d"></textarea>
+                        </div>
+                        <div class="inputfield">
+                            <label>Worked Year</label>
+                            <input type="number" class="input" id="w_year">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="apply()">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./contractorDashboard.js"></script>
+</body>
+</html>

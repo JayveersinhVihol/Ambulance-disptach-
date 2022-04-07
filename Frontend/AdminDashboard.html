@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <style>
+        body {
+            margin: 8px;
+        }
+
+        h1 {
+            font-size: 2em;
+            line-height: auto;
+            margin-block-start: 0.67em;
+            margin-block-end: 0.67em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+        }
+
+        .user-main {
+            width: 20%;
+            display: inline-block;
+            vertical-align: top;
+        }
+        
+        .user-main .user {
+            width: 80%;
+            margin: 0px auto;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .user-main .user .icon img {
+            width: 150px;
+            height: 150px;
+        }
+
+        .user-main .user .name {
+            font-weight: bold;
+            font-size: 20px;
+            margin-top: 8px;
+        } 
+
+        .posts {
+            width: 40%;
+            display: inline-block;
+        }
+
+        .post-main {
+            width: 75%;
+            margin: 0px auto;
+        }
+
+        .post-main .form .form-element {
+            margin-top: 10px;
+        }
+
+        input[type=text] {
+            padding: 5px;
+            width: 50%;
+        }
+
+        textarea {
+            padding: 5px;
+            width: 50%;
+        }
+
+        .form-element button {
+            margin-top: 10px;
+            background-color: #dc2827;
+            box-shadow: none;
+            border: none;
+            color: white;
+            padding: 10px 12px;
+        }
+
+        .old-posts {
+            width: 39%;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .old-posts .all-posts {
+            margin-top: 10px;
+            border: 1px solid #dc2827;
+            padding: 10px;
+        }
+
+        .old-posts .all-posts .title {
+            font-weight: bold;
+            font-size: 18px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 8px;
+        }
+
+        .old-posts .all-posts img {
+            width: 25px;
+            height: 25px;
+            vertical-align: middle;
+            display: inline-block;
+        }
+
+        .old-posts .all-posts .desc {
+            margin-top: 5px;
+        }
+
+        .old-posts .all-posts button {
+            margin-top: 5px;
+            background-color: #dc2827;
+            box-shadow: none;
+            border: none;
+            color: white;
+            padding: 7px 5px;
+            width: 20%;
+            cursor: pointer;
+        }
+
+        .user-details {
+            margin-top: 5px;
+        }
+
+        .no-posts {
+            display: none;
+        }
+
+        .title h1 {
+            background-color: #dc2827;
+            text-align: center;
+            color: white;
+            padding: 10px;
+        }
+
+        .sign-out-button {
+            margin: 5px auto;
+            background-color: gray;
+            box-shadow: none;
+            border: none;
+            color: white;
+            padding: 10px 12px;
+            width: 45%;
+            cursor: pointer;
+        }
+
+        .sign-out-button.edit {
+            background-color: green;
+        }
+
+        .input-text {
+            margin: 0px auto;
+            margin-top: 10px;
+        }
+
+        .input-text.name-edit {
+            width: 40%;
+            display: inline-block;
+        }
+
+        td, tr, th {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+
+        .edit-btn {
+            padding: 2px 13px;
+            border: 1px solid green;
+            text-decoration: none;
+            background-color: green;
+            color: white;
+        }
+
+        .delete-btn {
+            padding: 2px 13px;
+            border: 1px solid red;
+            text-decoration: none;
+            background-color: red;
+            color: white;
+            margin-left: 10px;
+        }
+
+        .inputfield {
+            margin: 10px 0px;
+        }
+
+        .inputfield label {
+            width: 28%;
+        }
+
+        .inputfield .input, .inputfield .custom_select {
+            width: 50%;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="user-main">
+            <div class="title"><h1>ADMIN</h1></div>
+            <div class="user">
+                <div class="icon">
+                    <img src="./user.png">
+                </div>
+                <div class="name" id="name">Admin</div>
+                <div class="sign-out-button" onclick="logOut()">Sign Out</div>
+            </div>
+        </div>
+        <div class="posts">
+            <div class="post-main">
+                <div class="title">
+                    <h1>USERS</h1>
+                </div>
+
+                <div>
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Actions</th>
+                        </tr>
+                        <tbody id="users-table">
+                        </tbody>
+                    </table>                    
+                </div>
+            </div>
+        </div>
+        <div class="old-posts">
+            <div class="title">
+                <h1>POSTS</h1>
+            </div>
+            <div>
+                <table>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tbody id="posts-table">
+                    </tbody>
+                </table>                    
+            </div>
+        </div>
+    </div>
+    
+    <script src="./AdminDashboard.js"></script>
+
+     <!-- Modal -->
+     <div class="modal fade" id="userEditModal" tabindex="-1" aria-labelledby="userEditModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">User Edit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" id="userCloseBtn" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form">
+                        <div class="inputfield">
+                            <label>First Name</label>
+                            <input type="text" class="input" id="firstName">
+                        </div>
+                        <div class="inputfield">
+                            <label>Last Name</label>
+                            <input type="text" class="input" id="lastName">
+                        </div> 
+                        <div class="inputfield">
+                            <label>Email</label>
+                            <input type="text" class="input" id="email">
+                        </div> 
+                        <div class="inputfield">
+                            <label>Contact</label>
+                            <input type="text" class="input" id="contact">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="editUser()">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="postEditModal" tabindex="-1" aria-labelledby="postEditModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Post</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" id="postCloseBtn" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form">
+                        <div class="inputfield">
+                            <label>Title</label>
+                            <input type="text" class="input" id="postTitle">
+                        </div>
+                        <div class="inputfield">
+                            <label>Category</label>
+                            <input type="text" class="input" id="postCategory">
+                        </div>
+                        <div class="inputfield">
+                            <label>Description</label>
+                            <textarea id="postDescription"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+            <div class="modal-footer">
+            <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+            <button type="button" class="btn btn-primary" onclick="editPost()">Apply</button>
+            </div>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

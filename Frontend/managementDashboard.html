@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <style>
+        body {
+            margin: 8px;
+        }
+
+        .user-main {
+            width: 24%;
+            display: inline-block;
+            vertical-align: top;
+        }
+        
+        .user-main .user {
+            width: 80%;
+            margin: 0px auto;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .user-main .user .icon img {
+            width: 150px;
+            height: 150px;
+        }
+
+        .user-main .user .name {
+            font-weight: bold;
+            font-size: 20px;
+            margin-top: 8px;
+        } 
+
+        .posts {
+            width: 50%;
+            display: inline-block;
+        }
+
+        .post-main {
+            width: 75%;
+            margin: 0px auto;
+        }
+
+        .post-main .form .form-element {
+            margin-top: 10px;
+        }
+
+        input[type=text] {
+            padding: 5px;
+            width: 50%;
+        }
+
+        textarea {
+            padding: 5px;
+            width: 50%;
+        }
+
+        .form-element button {
+            margin-top: 10px;
+            background-color: #dc2827;
+            box-shadow: none;
+            border: none;
+            color: white;
+            padding: 10px 12px;
+        }
+
+        .old-posts {
+            width: 24%;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .old-posts .all-posts {
+            margin-top: 10px;
+            border: 1px solid #dc2827;
+            padding: 10px;
+        }
+
+        .old-posts .all-posts .title {
+            font-weight: bold;
+            font-size: 18px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 8px;
+        }
+
+        .old-posts .all-posts img {
+            width: 25px;
+            height: 25px;
+            vertical-align: middle;
+            display: inline-block;
+        }
+
+        .old-posts .all-posts .desc {
+            margin-top: 5px;
+        }
+
+        .old-posts .all-posts button {
+            margin-top: 5px;
+            background-color: #dc2827;
+            box-shadow: none;
+            border: none;
+            color: white;
+            padding: 7px 5px;
+            width: 20%;
+            cursor: pointer;
+        }
+
+        .user-details {
+            margin-top: 5px;
+        }
+
+        .no-posts {
+            display: none;
+        }
+
+        .title h1 {
+            background-color: #dc2827;
+            text-align: center;
+            color: white;
+            padding: 10px;
+        }
+
+        .sign-out-button {
+            margin: 5px auto;
+            background-color: gray;
+            box-shadow: none;
+            border: none;
+            color: white;
+            padding: 10px 12px;
+            width: 30%;
+            cursor: pointer;
+        }
+
+        .sign-out-button.edit {
+            background-color: green;
+        }
+
+        .input-text {
+            margin: 0px auto;
+            margin-top: 10px;
+        }
+
+        .input-text.name-edit {
+            width: 40%;
+            display: inline-block;
+        }
+
+        body {
+            margin: 8px;
+        }
+
+        h1 {
+            font-size: 2em;
+            line-height: auto;
+            margin-block-start: 0.67em;
+            margin-block-end: 0.67em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+        }
+
+        .user-main {
+            width: 24%;
+            display: inline-block;
+            vertical-align: top;
+        }
+        
+        .user-main .user {
+            width: 80%;
+            margin: 0px auto;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .user-main .user .icon img {
+            width: 150px;
+            height: 150px;
+        }
+
+        .user-main .user .name {
+            font-weight: bold;
+            font-size: 20px;
+            margin-top: 8px;
+        }
+
+         .title h1 {
+            background-color: #dc2827;
+            text-align: center;
+            color: white;
+            padding: 10px;
+        }
+
+        .post-list {
+            margin-top: 20px;
+            border: 1px solid #dc2827;
+            padding: 10px;
+        }
+
+        .post-list .line-one img {
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .post-list .line-one .title {
+            display: inline-block;
+            /* vertical-align: middle; */
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        .post-list .line-two .desc {
+            margin-top: 10px;
+        }
+
+        .post-list .line-three button {
+            margin-top: 10px;
+            background-color: #dc2827;
+            box-shadow: none;
+            border: none;
+            color: white;
+            padding: 10px 12px;
+        }
+
+        .user-details {
+            margin-top: 5px;
+        }
+
+        .no-posts {
+            display: none;
+        }
+
+        .sign-out-button {
+            margin: 5px auto;
+            background-color: gray;
+            box-shadow: none;
+            border: none;
+            color: white;
+            padding: 10px 12px;
+            width: 42%;
+            cursor: pointer;
+        }
+
+        .sign-out-button.edit {
+            background-color: green;
+        }
+
+        .input-text {
+            margin: 0px auto;
+            margin-top: 10px;
+        }
+
+        .input-text.name-edit {
+            width: 40%;
+            display: inline-block;
+        }
+
+        .search {
+            width: 96%;
+            padding: 10px 15px;
+        }
+
+        .inputfield {
+            margin: 10px 0px;
+        }
+
+        .inputfield label {
+            width: 28%;
+        }
+
+        .inputfield .input, .inputfield .custom_select {
+            width: 50%;
+            display: inline-block;
+        }
+
+        .applicants {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .applicant {
+            cursor: pointer;
+        }
+
+        .title h1 {
+            background-color: white;
+            text-align: center;
+            color: #dc2827;
+            padding: 10px;
+            border: 4px solid #dc2827;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="user-main">
+            <div class="title"><h1>MANAGEMENT</h1></div>
+            <div class="user">
+                <div class="icon">
+                    <img src="./user.png">
+                </div>
+                <div class="name" id="name">Management</div>
+                <div class="sign-out-button" onclick="logOut()">Sign Out</div>
+            </div>
+        </div>
+        <div class="posts">
+            <div class="post-main">
+                <div class="title">
+                    <h1><span id="header-title">CREATE</span> CONTRACT</h1>
+                </div>
+                
+                <div class="form">
+                    <div class="form-element">
+                        <input type="text" placeholder="Contract Title" id="title">
+                    </div>
+                    <div class="form-element">
+                        <input type="text" placeholder="Category" id="category">
+                    </div>
+                    <div class="form-element">
+                        <textarea placeholder="Contract Description" id="description"></textarea>
+                    </div>
+                    <div class="form-element">
+                        <button onclick="createPost()" id="create-button">Create</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="old-posts">
+            <div class="title">
+                <h1>OLD POSTS</h1>
+            </div>
+            <div class="dynamic-posts"></div>
+            <div class="no-posts">No Posts Available</div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="applicantModal" tabindex="-1" aria-labelledby="applicantModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Applicant Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form">
+                        <h3> Basic Information </h3>
+            
+                        <div class="inputfield">
+                            <label>Email</label>
+                            <label class="input" id="userEmail"></label>
+                        </div>
+                        <div class="inputfield">
+                            <label>First Name</label>
+                            <label class="input" id="Fname"></label>
+                        </div> 
+                        <div class="inputfield">
+                            <label>Last Name</label>
+                            <label class="input" id="Lname"></label>
+                        </div>
+                        <div class="inputfield">
+                            <label>Phone Number</label>
+                            <label class="input" id="phone"></label>
+                        </div>
+                        <div class="inputfield">
+                            <label>Address</label>
+                            <label class="input" id="Add"></label>
+                        </div>
+                        <div class="inputfield">
+                            <label>City</label>
+                            <label class="input" id="city"></label>
+                        </div>
+                        <div class="inputfield">
+                            <label>Province</label>
+                            <label class="input" id="province"></label>
+                        </div> 
+                        <div class="inputfield">
+                            <label>Country</label>
+                            <label class="input" id="country"></label>
+                        </div> 
+            
+                        <h3>Education</h3>
+            
+                        <div class="inputfield">
+                            <label>School</label>
+                            <label class="input" id="school"></label>
+                        </div>
+                        <div class="inputfield">
+                            <label>Program</label>
+                            <label class="input" id="program"></label>
+                        </div>
+                        <div class="inputfield">
+                            <label>Education Level</label>
+                            <label class="input" id="edu_lvl"></label>
+                        </div>
+                        <div class="inputfield">
+                            <label>Graduation Date</label>
+                            <label class="input" id="gr_date"></label>
+                        </div>
+            
+                        <h3>Work Experience</h3>
+            
+                        <div class="inputfield">
+                            <label>Employer</label>
+                            <label class="input" id="emp_name"></label>
+                        </div>
+                        <div class="inputfield">
+                            <label>Job Title</label>
+                            <label class="input" id="job_t"></label>
+                        </div>
+                        <div class="inputfield">
+                            <label>Job Duty</label>
+                            <label class="input" id="job_d"></label>
+                        </div>
+                        <div class="inputfield">
+                            <label>Worked Year</label>
+                            <label class="input" id="w_year"></label>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="modal-footer">
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <script src="./managementDashboard.js"></script>
+</body>
+</html>
